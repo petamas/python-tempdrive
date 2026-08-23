@@ -14,7 +14,7 @@ Properties:
 - `path: pathlib.Path`: Path of the root folder of the drive, eg. `C:\`
 
 Static methods:
-- `is_drive_string(s: str)`: Returns whether `s` is a valid drive string, i.e. one of the following (X can be any lower or upper case English letter): "X", "X:", "X:\", "X:/".
+- `is_drive_string(s: str)`: Returns whether `s` is a valid drive string, i.e. one of the following (X can be any lower or upper case English letter): `"X"`, `"X:"`, `"X:\"`, `"X:/"`.
 
 ## Context manager `tempdrive.temporary_drive()`
 

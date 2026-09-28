@@ -1,0 +1,33 @@
+default:
+    just --list --justfile "{{justfile()}}"
+
+[private]
+verify_with_impl python_minor_version $UV_PROJECT_ENVIRONMENT $UV_PYTHON:
+    @echo UV_PROJECT_ENVIRONMENT=${UV_PROJECT_ENVIRONMENT}
+    @echo UV_PYTHON=${UV_PYTHON}
+    uv sync
+
+    uv run -m mypy .
+    uv run ty check .
+    uv run ruff check --target-version py3{{python_minor_version}}
+    uv run ruff format --check --target-version py3{{python_minor_version}}
+
+    # Make sure to catch warnings emitted during compilation
+    find -name '*.pyc' -delete
+    uv run -m pytest
+
+verify_with python_minor_version="14": (verify_with_impl python_minor_version ".just_venv_3_"+python_minor_version "3."+python_minor_version)
+
+verify: (verify_with "10") (verify_with "11") (verify_with "12") (verify_with "13") (verify_with "14")
+
+format:
+    uv run ruff check --select I --fix
+    uv run ruff format
+
+build_no_verify:
+    uv build
+
+build: verify build_no_verify
+
+publish: build
+    uv publish

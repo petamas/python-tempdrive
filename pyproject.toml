@@ -12,10 +12,12 @@ description = "Create temporary drive substitutions, just like subst.exe"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
 ]
@@ -28,3 +30,46 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/petamas/python-tempdrive"
 "Bug Tracker" = "https://github.com/petamas/python-tempdrive/issues"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.14.1,<1.15",
+    "pytest>=8.3.5,<9",
+    "ruff>=0.15.12,<0.16",
+    "ty>=0.0.34,<0.1",
+]
+
+
+[tool.mypy]
+strict = true
+
+
+[tool.pytest.ini_options]
+# Treat warnings.warn() warnings as errors
+filterwarnings = ['error']
+
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+extend-select = [
+    "I",  # isort
+]
+isort.force-single-line = true
+
+[tool.ruff.lint.per-file-ignores]
+# Allow star imports in __init__.py files
+"__init__.py" = [
+    "F403",  # undefined-local-with-import-star
+    "F405",  # undefined-local-with-import-star-usage
+]
+
+
+[tool.ty]
+rules.undefined-reveal = "ignore"
+analysis.respect-type-ignore-comments = false
+terminal.error-on-warning = true

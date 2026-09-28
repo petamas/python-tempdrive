@@ -5,7 +5,6 @@ __all__ = [
 
 import ctypes
 from pathlib import Path
-from typing import Optional
 
 from ntstatus import Win32Error
 

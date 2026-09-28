@@ -3,7 +3,6 @@ __all__ = [
 ]
 
 import contextlib
-import ctypes
 from collections.abc import Callable
 from collections.abc import Generator
 from pathlib import Path
@@ -13,6 +12,10 @@ from tempdrive._exceptions import TempDriveError
 from tempdrive._free_drive import get_free_drive_letters
 from tempdrive._subst import subst
 from tempdrive._subst import unsubst
+
+
+def _dummy_log(mst: str) -> None:
+    pass
 
 
 @contextlib.contextmanager
@@ -32,7 +35,7 @@ def temporary_drive(path: Path, log: Optional[Callable[[str], None]] = None) -> 
     """
 
     if log is None:
-        log = lambda msg: None
+        log = _dummy_log
 
     drives = get_free_drive_letters()
     if not drives:

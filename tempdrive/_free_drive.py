@@ -4,11 +4,9 @@ __all__ = [
 ]
 
 import ctypes
-import ctypes.wintypes as wintypes
 import itertools
 import string
 from collections.abc import Generator
-from typing import Optional
 
 from ntstatus import Win32Error
 

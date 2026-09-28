@@ -4,13 +4,16 @@ __all__ = [
 
 import contextlib
 import ctypes
-from collections.abc import Callable, Generator
+from collections.abc import Callable
+from collections.abc import Generator
 from pathlib import Path
 from typing import Optional
 
 from tempdrive._exceptions import TempDriveError
 from tempdrive._free_drive import get_free_drive_letters
-from tempdrive._subst import subst, unsubst
+from tempdrive._subst import subst
+from tempdrive._subst import unsubst
+
 
 @contextlib.contextmanager
 def temporary_drive(path: Path, log: Optional[Callable[[str], None]] = None) -> Generator[Path]:

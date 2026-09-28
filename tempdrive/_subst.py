@@ -12,9 +12,11 @@ from ntstatus import Win32Error
 from tempdrive._drive_letter import DriveLetter
 from tempdrive._exceptions import TempDriveError
 from tempdrive._free_drive import get_used_drive_letters
-from tempdrive._winapi import DefineDosDeviceW, QueryDosDeviceW
+from tempdrive._winapi import DefineDosDeviceW
+from tempdrive._winapi import QueryDosDeviceW
 
 DDD_REMOVE_DEFINITION = 2
+
 
 def subst(drive: DriveLetter, path: Path) -> None:
     """
@@ -38,6 +40,7 @@ def subst(drive: DriveLetter, path: Path) -> None:
     if not success:
         raise ctypes.WinError(ctypes.GetLastError())
 
+
 def query_device(drive: DriveLetter) -> str:
     bufsize = 260
     while True:
@@ -53,6 +56,7 @@ def query_device(drive: DriveLetter) -> str:
             bufsize *= 2
         else:
             raise ctypes.WinError(last_error)
+
 
 def unsubst(drive: DriveLetter) -> None:
     """

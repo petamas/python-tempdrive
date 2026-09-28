@@ -4,8 +4,9 @@ __all__ = [
 
 import re
 from dataclasses import dataclass
-from typing import Final
 from pathlib import Path
+from typing import Final
+
 
 @dataclass(frozen=True, order=True)
 class DriveLetter:

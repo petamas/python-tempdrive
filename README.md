@@ -1,6 +1,6 @@
 # tempdrive
 
-`tempdrive` is a Python library defining functions and context managers to create and remove Windows disk drive substitutions, i.e. virtual disk drives that act as an alias to a directory.
+`tempdrive` is a Python library defining functions and context managers to create and remove Windows disk drive substitutions, i.e. virtual disk drives that act as an alias to a directory. (Just like the classic `subst.exe` does.)
 
 This functionality can be useful to get around the 260-character path length limit present in many Windows applications.
 

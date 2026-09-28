@@ -9,7 +9,7 @@ from pathlib import Path
 
 @dataclass(frozen=True, order=True)
 class DriveLetter:
-    """
+    r"""
     This class represents a Windows disk drive letter. It can be both initialized and queryied in a variety of formats. (See `DriveLetter.is_drive_string()`.)
 
     Properties:
@@ -47,7 +47,7 @@ class DriveLetter:
 
     @staticmethod
     def is_drive_string(s: str) -> bool:
-        """
+        r"""
         Returns whether s is a valid drive string, i.e. one of the following (X can be any lower or upper case English letter): "x", "x:", "x:\", "x:/".
         """
 

@@ -18,7 +18,7 @@ DDD_REMOVE_DEFINITION = 2
 
 
 def subst(drive: DriveLetter, path: Path) -> None:
-    """
+    r"""
     Creates new drive substitution, similarly to [subst.exe](https://ss64.com/nt/subst.html).
 
     For example, `tempdrive.subst(tempdrive.DriveLetter("w:"), Path(r'c:\Windows'))` creates a virtual W: drive that acts as an alias to the Windows folder.

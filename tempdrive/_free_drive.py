@@ -4,6 +4,7 @@ __all__ = [
 ]
 
 import ctypes
+import ctypes.wintypes as wintypes
 import itertools
 import string
 from collections.abc import Generator
@@ -44,7 +45,7 @@ RESOURCETYPE_DISK = 1
 
 
 def get_network_drives() -> Generator[DriveLetter]:
-    henum = ctypes.wintypes.HANDLE()
+    henum = wintypes.HANDLE()
     ret = WNetOpenEnumW(RESOURCE_REMEMBERED, RESOURCETYPE_DISK, 0, None, ByRef(henum))
     if ret != Win32Error.ERROR_SUCCESS:
         raise ctypes.WinError(ret)
@@ -52,9 +53,9 @@ def get_network_drives() -> Generator[DriveLetter]:
     array_size = 1
     while True:
         buffer = (NETRESOURCEW * array_size)()
-        bufsize = ctypes.wintypes.DWORD(ctypes.sizeof(buffer))
+        bufsize = wintypes.DWORD(ctypes.sizeof(buffer))
 
-        count = ctypes.wintypes.DWORD(-1)
+        count = wintypes.DWORD(-1)
         # print(f'WNetEnumResourceW(count={count.value}, bufsize={bufsize.value})')
         ret = WNetEnumResourceW(henum, ByRef(count), buffer, ByRef(bufsize))
         # print(f'ret={ret}, count={count.value}, bufsize={bufsize.value}')
